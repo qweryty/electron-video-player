@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Electron Video Player</title>
+    <script>var exports = { "__esModule": true };</script>
+    <style>
+        html,
+        body,
+        video {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            display: block;
+        }
+
+        body {
+            background-color: black;
+            max-height: 100vh;
+        }
+
+        video {
+            width: 100%;
+            height: 100vh;
+            max-height: 100vh;
+        }
+
+        video:focus {
+            border: 0;
+            outline: none;
+        }
+
+        video::cue(rt) {
+            background-color: rgba(0, 0, 0, .9);
+        }
+    </style>
+</head>
+
+<body>
+    <video id="video" controls></video>
+    <script src="build/renderer.js" defer></script>
+</body>
+
+</html>

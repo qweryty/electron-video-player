@@ -1,0 +1,40 @@
+{
+  "name": "electron-video-player",
+  "version": "0.0.1",
+  "description": "Very simple video player",
+  "main": "build/index.js",
+  "scripts": {
+    "build": "tsc --project tsconfig.main.json && webpack",
+    "start": "npm run build && electron .",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "pack": "npm run build && electron-builder --dir",
+    "dist": "npm run build && electron-builder"
+  },
+  "build": {
+    "appId": "top.morozov.electron-video-player",
+    "linux": {
+      "category": "Video",
+      "mimeTypes": ["video/mp4", "video/webm"]
+    },
+    "files": [
+      "build/**/*",
+      "package.json",
+      "index.html"
+    ]
+  },
+  "author": "Sergey Morozov",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/mime": "^3.0.1",
+    "electron": "22.1.0",
+    "electron-builder": "^23.6.0",
+    "ts-loader": "^9.4.2",
+    "typescript": "^4.9.4",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1"
+  },
+  "dependencies": {
+    "hotkeys-js": "^3.10.1",
+    "mime": "^3.0.0"
+  }
+}

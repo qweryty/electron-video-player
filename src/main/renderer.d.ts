@@ -1,0 +1,1 @@
+declare function setVideo(videoResponse?: VideoResponse, play?: boolean);
