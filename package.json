@@ -14,7 +14,10 @@
     "appId": "top.morozov.electron-video-player",
     "linux": {
       "category": "Video",
-      "mimeTypes": ["video/mp4", "video/webm"]
+      "mimeTypes": [
+        "video/mp4",
+        "video/webm"
+      ]
     },
     "files": [
       "build/**/*",
@@ -35,6 +38,7 @@
   },
   "dependencies": {
     "hotkeys-js": "^3.10.1",
-    "mime": "^3.0.0"
+    "mime": "^3.0.0",
+    "node-webvtt": "^1.9.4"
   }
 }

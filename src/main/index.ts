@@ -1,23 +1,37 @@
+/// <reference types="../webvtt" />
 /// <reference types="../common" />
 import { app, BrowserWindow, ipcMain, dialog } from 'electron'
 import * as path from 'path'
 import * as mime from 'mime/lite'
 import * as fs from 'fs'
+import * as webvtt from 'node-webvtt'
+
+function addSubtitleByPath(subs: Subtitle[], subtitlePath: string){
+    if(!fs.existsSync(subtitlePath))
+        return;
+
+    let subtitleString = fs.readFileSync(subtitlePath, 'utf-8');
+    let parsedSubtitle = webvtt.parse(subtitleString);
+    if(!parsedSubtitle.valid)
+        return;
+
+    let subtitle: Subtitle = {
+        source: subtitlePath,
+        cues: parsedSubtitle.cues
+    };
+    subs.push(subtitle)
+}
 
 function openVideo(files: string[]) {
     const { dir, base, ext, name } = path.parse(files[0])
     const POSSIBLE_SUBTITLE_PATHS = ['', 'subs', 'sub', 'subtitles']
-    let subs: { source: string }[] = []
+    let subs: Subtitle[] = []
     for (let subPath of POSSIBLE_SUBTITLE_PATHS) {
         let combinedPath = path.join(dir, subPath, name)
 
-        if (fs.existsSync(combinedPath + '.vtt')) {
-            subs.push({ source: combinedPath + '.vtt' });
-        }
+        addSubtitleByPath(subs, combinedPath + '.vtt');
 
-        if (fs.existsSync(combinedPath + ext + '.vtt')) {
-            subs.push({ source: combinedPath + ext + '.vtt' });
-        }
+        addSubtitleByPath(subs, combinedPath + ext + '.vtt');
     }
     return {
         source: files[0],

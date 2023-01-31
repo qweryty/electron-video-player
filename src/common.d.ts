@@ -1,7 +1,9 @@
-interface Subtitle{
-    source: string
+interface Subtitle {
+    source: string;
+    cues: Cue[];
 }
-interface VideoResponse{
+
+interface VideoResponse {
     source: string;
     type: string;
     subtitles: Subtitle[];
