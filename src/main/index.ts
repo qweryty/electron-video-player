@@ -39,7 +39,7 @@ function createWindow() {
         let result = dialog.showOpenDialogSync({
             properties: ['openFile'],
             filters: [
-                { name: 'Video', extensions: ['mp4', 'webm', 'mkv'] }
+                { name: 'Video', extensions: ['mp4', 'webm'] }
             ]
         })
         if (result == null)
